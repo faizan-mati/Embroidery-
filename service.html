@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Stitch & Style</title>
+    <style>
+        :root {
+            --primary: #7E57C2;
+            --secondary: #5E35B1;
+            --accent: #FF4081;
+            --light: #F3F4F6;
+            --dark: #1F2937;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --error: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FAFAFA;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo-icon {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links .active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Mobile menu button */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* Page Banner */
+        .page-banner {
+            background-color: #F9F5FF;
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .page-banner p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            color: #4B5563;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin: 0 0.5rem;
+            color: #9CA3AF;
+        }
+        
+        .breadcrumb a {
+            color: #4B5563;
+        }
+        
+        .breadcrumb li:last-child a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        /* Services Overview */
+        .services-overview {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: #6B7280;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Service Detail Sections */
+        .service-detail {
+            padding: 4rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .service-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .service-detail:nth-child(even) {
+            background-color: #F9F5FF;
+        }
+        
+        .service-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .service-content:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .service-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .service-text {
+            flex: 1;
+        }
+        
+        .service-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .service-text p {
+            margin-bottom: 1.5rem;
+            color: #4B5563;
+        }
+        
+        .service-features {
+            margin: 2rem 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            margin-right: 1rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        /* Packages Section */
+        .pricing-packages {
+            padding: 5rem 0;
+            background-color: #F9F5FF;
+        }
+        
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .package-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .package-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .package-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .package-price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .package-body {
+            padding: 2rem;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .package-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            align-items: center;
+        }
+        
+        .package-features li::before {
+            content: '✓';
+            margin-right: 0.75rem;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .package-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Popular badge */
+        .package-popular {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 30px;
+            right: -30px;
+            transform: rotate(45deg);
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #4B5563;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 0;
+            background-color: #F9F5FF;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: white;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-toggle.active {
+            transform: rotate(45deg);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-col p {
+            color: #9CA3AF;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-top: 0.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #9CA3AF;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9CA3AF;
+            font-size: 0.9rem;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .service-content {
+                flex-direction: column !important;
+            }
+            
+            .service-image, .service-text {
+                width: 100%;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s;
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .page-banner h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <svg class="logo-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-6-6m0 0L3 3m6 6l-6 6m12-6l6 6m0 0L21 21m-6-6l6-6" />
+                    </svg>
+                    Stitch & <span>Style</span>
+                </a>
+                
+                <button class="menu-btn">
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                
+                <ul class="nav-links">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./service.html" class="active">Services</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" class="btn btn-primary">Get Quote</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+            </ul>
+            <h1>Our Embroidery Services</h1>
+            <p>Discover our comprehensive range of professional embroidery services tailored to meet your unique needs and bring your creative vision to life.</p>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>What We Offer</h2>
+                <p>At Stitch & Style, we pride ourselves on delivering high-quality embroidery services with meticulous attention to detail and exceptional craftsmanship.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 1: Custom Designs -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-image">
+                    <img src="data:image/jpeg;base64,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" alt="Custom Embroidery Design Service">
+                </div>
+                <div class="service-text">
+                    <h2>Custom Designs</h2>
+                    <p>Transform your ideas into beautiful embroidered creations with our custom design service. Our team of skilled designers works closely with you to create unique patterns that perfectly capture your vision.</p>
+                    <p>Whether you have a sketch, logo, or just a concept in mind, we can help bring it to life with precision and creativity.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Professional Design Consultation</strong> - Our experts will guide you through the design process, offering suggestions and advice to optimize your embroidery.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Digital Proof Approval</strong> - Review and approve your design before production begins to ensure it meets your expectations.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Unlimited Revisions</strong> - We'll work with you until your design is perfect, with no limit on revision rounds.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Get Custom Design Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 2: Logo Embroidery -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-text">
+                    <h2>Logo Embroidery</h2>
+                    <p>Showcase your brand identity with professionally embroidered logos on various materials. Our logo embroidery service is perfect for corporate uniforms, promotional items, and merchandise.</p>
+                    <p>We ensure consistent quality and accurate color matching to maintain your brand standards across all embroidered items.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Logo Digitization</strong> - We convert your logo into an embroidery-ready digital format optimized for stitching.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Color Matching</strong> - Precise thread color selection to match your brand colors accurately.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Multiple Placement Options</strong> - Apply your logo on various positions including chest, sleeve, back, and more.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Learn About Logo Embroidery</a>
+                </div>
+                <div class="service-image">
+                    <img src="data:image/jpeg;base64,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" alt="Logo Embroidery Service">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 3: Bulk Orders -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-image">
+                    <img src="https://as1.ftcdn.net/jpg/00/23/89/26/1000_F_23892621_PRdp1yq05AzMsh3H0fq3iAF0Y0KeBmMQ.jpg" alt="Bulk Embroidery Orders">
+                </div>
+                <div class="service-text">
+                    <h2>Bulk Orders</h2>
+                    <p>We handle large-scale embroidery projects with consistency and attention to detail. Our bulk order service is ideal for teams, events, retail merchandise, and corporate giveaways.</p>
+                    <p>Our efficient production process ensures timely delivery without compromising on quality, even for large quantities.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Volume Pricing</strong> - Competitive rates for large orders with tiered pricing based on quantity.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Quality Control</strong> - Rigorous inspection process to ensure consistent quality across all items.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Rush Service Available</strong> - Expedited production options for time-sensitive projects.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Request Bulk Order Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 4: Home Decor -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-text">
+                    <h2>Home Decor Embroidery</h2>
+                    <p>Add a personal touch to your living space with our home decor embroidery service. We create beautiful embroidered pieces for pillows, linens, wall art, and more.</p>
+                    <p>Each piece is crafted with attention to detail, using premium threads and materials to ensure durability and aesthetic appeal.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Custom Design Options</strong> - Create personalized patterns that match your home's aesthetic.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Premium Materials</strong> - High-quality fabrics and threads for luxurious and long-lasting results.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Gift Options</strong> - Beautiful packaging available for embroidered items intended as gifts.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Explore Home Decor Options</a>
+                </div>
+                <div class="service-image">
+                    <img src="data:image/jpeg;base64,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" alt="Home Decor Embroidery">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 5: Monogramming -->
+    <section class="service-detail">
+        <div class="container">
+            <div class="service-content">
+                <div class="service-image">
+                    <img src="data:image/jpeg;base64,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" alt="Monogramming Services">
+                </div>
+                <div class="service-text">
+                    <h2>Monogramming</h2>
+                    <p>Add a personal touch to your items with our professional monogramming service. From towels and robes to bags and apparel, monograms add elegance and personalization to everyday items.</p>
+                    <p>Choose from our extensive library of fonts and styles, or work with us to create a custom monogram that reflects your personal style.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Multiple Font Options</strong> - Classic to contemporary styles to suit your preferences.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Thread Color Selection</strong> - Extensive palette of thread colors to choose from.
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Perfect for Gifts</strong> - Create personalized gifts for weddings, birthdays, and special occasions.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary">Get Monogramming Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="pricing-packages">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Pricing Packages</h2>
+                <p>Choose the package that best suits your needs and budget. All our packages include high-quality embroidery services and dedicated customer support.</p>
+            </div>
+            
+            <div class="package-cards">
+                <!-- Basic Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Basic</div>
+                        <div class="package-price">$149 <span>/ project</span></div>
+                        <p>Perfect for small projects</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Single design digitization</li>
+                            <li>Up to 5,000 stitches</li>
+                            <li>2 thread color options</li>
+                            <li>1 revision round</li>
+                            <li>Digital proof approval</li>
+                            <li>7-day turnaround time</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Select Basic</a>
+                    </div>
+                </div>
+                
+                <!-- Standard Package -->
+                <div class="package-card package-popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="package-header">
+                        <div class="package-name">Standard</div>
+                        <div class="package-price">$299 <span>/ project</span></div>
+                        <p>Ideal for medium-sized projects</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Up to 3 design digitizations</li>
+                            <li>Up to 10,000 stitches per design</li>
+                            <li>5 thread color options</li>
+                            <li>3 revision rounds</li>
+                            <li>Digital proof approval</li>
+                            <li>5-day turnaround time</li>
+                            <li>Sample stitch-out</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Select Standard</a>
+                    </div>
+                </div>
+                
+                <!-- Premium Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <div class="package-name">Premium</div>
+                        <div class="package-price">$499 <span>/ project</span></div>
+                        <p>Best for complex projects</p>
+                    </div>
+                    <div class="package-body">
+                        <ul class="package-features">
+                            <li>Up to 5 design digitizations</li>
+                            <li>Up to 20,000 stitches per design</li>
+                            <li>Unlimited thread color options</li>
+                            <li>Unlimited revision rounds</li>
+                            <li>Digital proof approval</li>
+                            <li>3-day turnaround time</li>
+                            <li>Sample stitch-out</li>
+                            <li>Priority customer support</li>
+                            <li>Design file ownership</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Select Premium</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Embroidery Project?</h2>
+                <p>Contact us today to discuss your custom embroidery needs. Our team is standing by to help bring your creative vision to life with our professional embroidery services.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Get a Free Quote</a>
+                    <a href="#" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our embroidery services.</p>
+            </div>
+            
+            <div class="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is the minimum order quantity for embroidery services?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our minimum order quantity varies depending on the service. For custom designs and individual monogramming, we accept single item orders. For bulk corporate orders, we typically require a minimum of 10 items. Please contact us for specific requirements related to your project.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How long does it take to complete an embroidery order?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our standard turnaround time is 5-7 business days after design approval. Rush services are available for an additional fee, which can reduce the turnaround time to 2-3 business days. Please note that larger orders may require additional production time.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I provide my own items for embroidery?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer embroidery services on customer-provided items. Please ensure that your items are clean, new or like-new condition, and suitable for embroidery. We'll assess your items upon receipt to confirm they can be properly embroidered.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What file formats do you accept for logo embroidery?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept vector files (.ai, .eps, .pdf) for best results. We can also work with high-resolution image files (.jpg, .png) if vector files are not available, although this may require additional digitization work. If you only have a low-resolution image, our design team can help recreate your logo for optimal embroidery results.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Do you offer design services if I don't have my own design?
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our in-house design team can create custom designs based on your ideas and preferences. Simply share your concept with us, and we'll work closely with you to develop a design that meets your vision. This service is included in our Standard and Premium packages, or can be added to the Basic package for an additional fee.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">Stitch & <span>Style</span></div>
+                    <p>Professional embroidery services delivering high-quality custom designs with exceptional craftsmanship and attention to detail.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19l-7-7 7-7m8 14l-7-7 7-7" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9l6 6m0-6l-6 6" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Custom Designs</a></li>
+                        <li><a href="#">Logo Embroidery</a></li>
+                        <li><a href="#">Bulk Orders</a></li>
+                        <li><a href="#">Home Decor Embroidery</a></li>
+                        <li><a href="#">Monogramming</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">+1 (555) 123-4567</a></li>
+                        <li><a href="#">info@stitchandstyle.com</a></li>
+                        <li><a href="#">123 Embroidery Lane, Craftsville, ST 12345</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Stitch & Style. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for FAQ Accordion -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const toggle = question.querySelector('.faq-toggle');
+                    
+                    // Close all other answers
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer) {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    document.querySelectorAll('.faq-toggle').forEach(item => {
+                        if (item !== toggle) {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current answer
+                    answer.classList.toggle('active');
+                    toggle.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
